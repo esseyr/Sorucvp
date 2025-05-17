@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Beni Seviyor musun?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .answers {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #yes {
+      background: #4caf50;
+      color: white;
+    }
+    #yes:hover {
+      background: #388e3c;
+    }
+    #no {
+      background: #e74c3c;
+      color: white;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">Beni seviyor musun?</div>
+    <div class="answers">
+      <button id="yes">Evet</button>
+      <button id="no">Hayır</button>
+    </div>
+  </div>
+  <script>
+    const noBtn = document.getElementById("no");
+    const container = document.querySelector(".answers");
+
+    noBtn.addEventListener("mouseenter", function() {
+      // Rastgele bir pozisyona kaçırsın
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      let maxLeft = containerRect.width - btnRect.width;
+      let left = Math.random() * maxLeft;
+      // Yalnızca yatayda hareket etsin
+      noBtn.style.position = "relative";
+      noBtn.style.left = left + "px";
+    });
+    noBtn.addEventListener("mouseleave", function() {
+      noBtn.style.left = "0px";
+    });
+
+    document.getElementById("yes").onclick = function(){
+      alert("Bunu bildiğime sevindim :)");
+    }
+  </script>
+</body>
+</html>
